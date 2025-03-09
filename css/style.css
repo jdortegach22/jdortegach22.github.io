@@ -1,3 +1,28 @@
+/* ===========================================
+   1. VARIABLES & RESET 
+   =========================================== */
+   :root {
+    /* Colors - Edit these to change your site color scheme */
+    --primary-color: #255F38;           /* Main brand color (green) */
+    --primary-light: rgba(37, 95, 56, 0.08); /* Light version for backgrounds */
+    --text-color: #333;                 /* Main text color */
+    --light-text: #666;                 /* Secondary text color */
+    --background: #f9f9f9;              /* Page background */
+    --card-bg: #fff;                    /* Card/section background */
+    
+    /* Spacing & Size */
+    --container-width: 1140px;          /* Maximum width of content */
+    --content-width: 800px;             /* Width for main content */
+    --border-radius: 8px;               /* Rounded corners */
+    --small-gap: 10px;                  /* Small spacing between elements */
+    --medium-gap: 25px;                 /* Medium spacing between elements */
+    --large-gap: 40px;                  /* Large spacing between elements */
+    
+    /* Effects */
+    --transition: all 0.3s ease;        /* Smooth transitions */
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Box shadow effect */
+}
+
 /* Reset browser default styles */
 * {
     margin: 0;
@@ -5,19 +30,9 @@
     box-sizing: border-box;
 }
 
-/* General styles */
-:root {
-    --primary-color: #255F38;
-    --primary-light: rgba(37, 95, 56, 0.08);
-    --text-color: #333;
-    --light-text: #666;
-    --background: #f9f9f9;
-    --card-bg: #fff;
-    --border-radius: 8px;
-    --transition: all 0.3s ease;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
+/* ===========================================
+   2. BASIC LAYOUT
+   =========================================== */
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--background);
@@ -28,88 +43,30 @@ body {
 }
 
 .container {
-    max-width: 1140px;
+    max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Header */
-header {
-    background: var(--card-bg);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-    padding: 18px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--text-color);
-    margin: 0;
-}
-
-/* Navigation Menu */
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
-
-nav ul li a {
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    color: var(--text-color);
-    text-decoration: none;
-    transition: var(--transition);
-    letter-spacing: 0.5px;
-    padding-bottom: 5px;
-    position: relative;
-}
-
-nav ul li a:hover, nav ul li a.active {
-    color: var(--primary-color);
-}
-
-nav ul li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: var(--primary-color);
-    transition: var(--transition);
-}
-
-nav ul li a:hover::after, nav ul li a.active::after {
-    width: 100%;
-}
-
-/* Main Content */
 main {
     padding: 0;
     margin: 50px auto;
-    max-width: 800px;
+    max-width: var(--content-width);
 }
 
-.profile-section, .publications-section {
+/* Section styling */
+.content-section,
+.profile-section, 
+.publications-section,
+.tutorials-section {
     background-color: var(--card-bg);
-    padding: 40px;
+    padding: var(--large-gap);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
+    margin-bottom: var(--medium-gap);
 }
 
-/* Two-column layout */
+/* Two-column layout - used in profile section */
 .two-column-layout {
     display: flex;
     gap: 30px;
@@ -124,14 +81,129 @@ main {
     flex: 1;
 }
 
+/* ===========================================
+   3. TYPOGRAPHY
+   =========================================== */
+h1, h2, h3 {
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: var(--medium-gap);
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 60px;
+    background-color: var(--primary-color);
+}
+
+.subsection-title {
+    font-size: 1.2rem;
+    margin: 0 0 12px 0;
+    color: var(--primary-color);
+}
+
+p {
+    font-size: 1.05rem;
+    color: var(--text-color);
+    margin-bottom: 22px;
+    line-height: 1.7;
+}
+
+/* Text emphasis */
+strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* ===========================================
+   4. HEADER & NAVIGATION
+   =========================================== */
+header, .site-header {
+    background: var(--card-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0;
+}
+
+/* Navigation Menu */
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-list a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition);
+    letter-spacing: 0.5px;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.nav-list a:hover, 
+.nav-list a.active {
+    color: var(--primary-color);
+}
+
+.nav-list a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.nav-list a:hover::after, 
+.nav-list a.active::after {
+    width: 100%;
+}
+
+/* ===========================================
+   5. PROFILE SECTION
+   =========================================== */
 /* Profile image */
 .profile-image {
     width: 100%;
     aspect-ratio: 1/1;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
-    margin-bottom: 25px;
+    margin-bottom: var(--medium-gap);
 }
 
 .profile-image img {
@@ -143,13 +215,7 @@ main {
 
 /* Research Interests */
 .research-interests {
-    margin-bottom: 25px;
-}
-
-.research-interests h2 {
-    font-size: 1.2rem;
-    margin: 0 0 12px 0;
-    color: var(--primary-color);
+    margin-bottom: var(--medium-gap);
 }
 
 .interests-list {
@@ -174,17 +240,22 @@ main {
     border-radius: 50%;
 }
 
-/* Contact section */
-.contact-section h2 {
-    font-size: 1.2rem;
-    margin: 0 0 12px 0;
-    color: var(--primary-color);
+/* About content */
+.about-content {
+    margin-top: 0;
+}
+
+/* ===========================================
+   6. CONTACT SECTION
+   =========================================== */
+.contact-section {
+    margin-bottom: var(--medium-gap);
 }
 
 .contact-links {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: var(--small-gap);
 }
 
 .contact-link {
@@ -203,50 +274,14 @@ main {
     transform: translateX(3px);
 }
 
-.contact-link svg {
-    stroke: var(--primary-color);
+.contact-icon {
+    width: 16px;
+    height: 16px;
 }
 
-/* About content */
-.about-content {
-    margin-top: 0;
-}
-
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: var(--text-color);
-    margin-bottom: 25px;
-    font-weight: 700;
-    line-height: 1.3;
-    position: relative;
-    padding-bottom: 15px;
-}
-
-h1::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    width: 60px;
-    background-color: var(--primary-color);
-}
-
-p {
-    font-size: 1.05rem;
-    color: var(--text-color);
-    margin-bottom: 22px;
-    line-height: 1.7;
-}
-
-/* Strong emphasis */
-strong {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-/* Publications page */
+/* ===========================================
+   7. PUBLICATIONS PAGE
+   =========================================== */
 .publication-item {
     margin-bottom: 35px;
     padding-bottom: 25px;
@@ -275,17 +310,56 @@ strong {
     text-decoration: underline;
 }
 
-
 .thesis-section {
-    margin-top: 40px;
+    margin-top: var(--large-gap);
 }
 
-/* Footer */
-footer {
+/* ===========================================
+   8. TUTORIALS PAGE
+   =========================================== */
+.coming-soon-section {
+    padding: var(--medium-gap);
+    background-color: var(--primary-light);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.tutorial-item {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.tutorial-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.tutorial-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.tutorial-link:hover {
+    text-decoration: underline;
+}
+
+.content-subsection {
+    margin-bottom: var(--medium-gap);
+}
+
+/* ===========================================
+   9. FOOTER
+   =========================================== */
+footer, .site-footer {
     padding: 25px 0;
     text-align: center;
     color: var(--light-text);
-    max-width: 800px;
+    max-width: var(--content-width);
     margin: 0 auto 40px;
 }
 
@@ -295,59 +369,68 @@ footer {
     align-items: center;
 }
 
-/* Responsive Design */
+/* ===========================================
+   10. MEDIA QUERIES & RESPONSIVE DESIGN
+   =========================================== */
+
+/* Tablets and small laptops */
 @media (max-width: 768px) {
     .header-content {
         flex-direction: column;
         text-align: center;
     }
     
-    nav {
+    nav, .main-navigation {
         margin-top: 15px;
     }
     
-    nav ul {
+    .nav-list {
         gap: 20px;
     }
     
-    .profile-section, .publications-section {
+    .profile-section, 
+    .publications-section,
+    .tutorials-section,
+    .content-section {
         padding: 25px;
         margin: 20px;
     }
     
-    /* Ensure tutorial container is responsive */
-        .tutorial-container {
-            max-width: 90%;
-            padding: 20px;
-            text-align: center;
-        }
-    /* Force bio (right-column) to appear first and profile (left-column) second */
+    /* Tutorial container responsive adjustment */
+    .tutorial-container {
+        max-width: 90%;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Reorder columns for mobile - bio first, profile second */
     .two-column-layout {
-        display: flex;
         flex-direction: column;
     }
 
     .right-column {
-        order: -1; /* Bio should be first */
+        order: -1; /* Bio appears first */
         width: 100%;
         text-align: center;
     }
     
     .left-column {
-        order: 1; /* Profile should move below */
+        order: 1; /* Profile appears second */
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
+    /* Change profile image to round on mobile */
     .profile-image {
         width: 220px;
         border-radius: 50%;
         border: 3px solid rgba(37, 95, 56, 0.1);
     }
     
-    .research-interests, .contact-section {
+    .research-interests, 
+    .contact-section {
         width: 100%;
         text-align: center;
     }
@@ -365,27 +448,28 @@ footer {
         gap: 15px;
     }
     
-    h1 {
+    .section-title {
         font-size: 1.8rem;
         text-align: center;
     }
     
-    h1::after {
+    .section-title::after {
         left: 50%;
         transform: translateX(-50%);
     }
 }
 
+/* Mobile phones */
 @media (max-width: 480px) {
-    nav ul {
+    .nav-list {
         gap: 15px;
     }
     
-    nav ul li a {
+    .nav-list a {
         font-size: 0.85rem;
     }
     
-    h1 {
+    .section-title {
         font-size: 1.6rem;
     }
     
@@ -393,3 +477,20 @@ footer {
         font-size: 1.15rem;
     }
 }
+
+/* ===========================================
+   11. UTILITY CLASSES - Use these for quick styling
+   =========================================== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-small { margin-bottom: var(--small-gap); }
+.mb-medium { margin-bottom: var(--medium-gap); }
+.mb-large { margin-bottom: var(--large-gap); }
+
+.mt-small { margin-top: var(--small-gap); }
+.mt-medium { margin-top: var(--medium-gap); }
+.mt-large { margin-top: var(--large-gap); }
+
+/* Add more utility classes as needed */
