@@ -315,6 +315,12 @@ footer {
         margin: 20px;
     }
     
+    /* Ensure tutorial container is responsive */
+        .tutorial-container {
+            max-width: 90%;
+            padding: 20px;
+            text-align: center;
+        }
     /* Force bio (right-column) to appear first and profile (left-column) second */
     .two-column-layout {
         display: flex;
